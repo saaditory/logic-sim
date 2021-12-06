@@ -1,0 +1,3 @@
+[submodule "lib/livedata-cpp"]
+	path = lib/livedata-cpp
+	url = https://github.com/saaditory/livedata-cpp

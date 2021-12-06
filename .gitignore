@@ -1,0 +1,9 @@
+# Compiled binaries
+*
+!/**/
+!*.*
+*.exe
+build/
+
+# VSCode folder
+.vscode/
