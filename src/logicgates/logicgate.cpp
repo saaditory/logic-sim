@@ -1,29 +1,31 @@
 #include "logicgate.h"
 
-void LogicGate::init(int inputCount)
+void LogicGate::init(vector<bool> inputs)
 {
     mInputs.clear();
-    mInputs = vector<LiveData<bool>>(inputCount);
-    for (LiveData<bool> &input : mInputs)
-        input.setValue(false);
-
+    for (bool input : inputs)
+    {
+        mInputs.push_back(LiveData<bool>(input));
+        mInputs.back().observe(mObserver);
+    }
     operate();
-    setObserver(this);
 }
-void LogicGate::onChanged(bool _) { operate(); }
-void LogicGate::setObserver(Observer *observer)
+void LogicGate::updateInputs(vector<bool> inputs)
 {
-    for (LiveData<bool> &input : mInputs)
-        input.observe(observer);
+    for (int i = 0; i < inputs.size(); i++)
+        mInputs.at(i).setValue(inputs.at(i));
 }
-void LogicGate::setOutput(bool value) { mOutput.setValue(value); }
+
+void LogicGate::setObserver(Observer *observer) { mObserver = observer; }
+void LogicGate::onChanged(bool _) { operate(); }
 
 void LogicGate::setInputs(vector<bool> values)
 {
-    init(values.size());
-    for (int i = 0; i < values.size(); i++)
-        mInputs.at(i).setValue(values.at(i));
+    (values.size() != mInputs.size())
+        ? init(values)
+        : updateInputs(values);
 }
+void LogicGate::setOutput(bool value) { mOutput.setValue(value); }
 
 vector<bool> LogicGate::getInputs()
 {

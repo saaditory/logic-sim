@@ -12,14 +12,17 @@ class LogicGate : public Observer<bool>
 private:
     vector<LiveData<bool>> mInputs;
     LiveData<bool> mOutput;
+    Observer *mObserver;
+
+    void updateInputs(vector<bool>);
 
 protected:
     void onChanged(bool);
 
-    virtual void init(int);
+    virtual void init(vector<bool>);
     virtual void operate() {}
-    virtual void setObserver(Observer *);
 
+    void setObserver(Observer *);
     void setOutput(bool);
 
 public:

@@ -6,7 +6,7 @@ void NandGate::operate()
     notGate.setInputs(vector<bool>{andGate.getOutput()});
     setOutput(notGate.getOutput());
 }
-void NandGate::setObserver(Observer *_) { LogicGate::setObserver(this); }
+NandGate::NandGate() { setObserver(this); };
 
 void NorGate::operate()
 {
@@ -14,7 +14,7 @@ void NorGate::operate()
     notGate.setInputs(vector<bool>{orGate.getOutput()});
     setOutput(notGate.getOutput());
 }
-void NorGate::setObserver(Observer *_) { LogicGate::setObserver(this); }
+NorGate::NorGate() { setObserver(this); };
 
 void Xor2Gate::operate()
 {
@@ -25,12 +25,12 @@ void Xor2Gate::operate()
     orGate.setInputs(vector<bool>{andGate1.getOutput(), andGate2.getOutput()});
     setOutput(orGate.getOutput());
 }
-void Xor2Gate::setObserver(Observer *_) { LogicGate::setObserver(this); }
+Xor2Gate::Xor2Gate() { setObserver(this); };
 
-void XorGate::init(int inputCount)
+void XorGate::init(vector<bool> inputs)
 {
-    xor2Gates = vector<Xor2Gate>(inputCount - 1);
-    LogicGate::init(inputCount);
+    xor2Gates = vector<Xor2Gate>(inputs.size() - 1);
+    LogicGate::init(inputs);
 }
 void XorGate::operate()
 {
@@ -45,7 +45,7 @@ void XorGate::operate()
     }
     setOutput(xor2Gates.at(gateCount - 1).getOutput());
 }
-void XorGate::setObserver(Observer *_) { LogicGate::setObserver(this); }
+XorGate::XorGate() { setObserver(this); };
 
 void XnorGate::operate()
 {
@@ -53,4 +53,4 @@ void XnorGate::operate()
     notGate.setInputs(vector<bool>{xorGate.getOutput()});
     setOutput(notGate.getOutput());
 }
-void XnorGate::setObserver(Observer *_) { LogicGate::setObserver(this); }
+XnorGate::XnorGate() { setObserver(this); };

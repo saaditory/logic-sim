@@ -7,21 +7,27 @@ class AndGate : public LogicGate
 {
 private:
     void operate();
-    void setObserver(Observer *);
+
+public:
+    AndGate();
 };
 
 class OrGate : public LogicGate
 {
 private:
     void operate();
-    void setObserver(Observer *);
+
+public:
+    OrGate();
 };
 
 class NotGate : public LogicGate
 {
 private:
     void operate();
-    void setObserver(Observer *);
+
+public:
+    NotGate();
 };
 
 #endif
