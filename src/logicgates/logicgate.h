@@ -7,12 +7,10 @@
 
 using namespace std;
 
-class LogicGate : public Observer<bool>
+class LogicGate : private LiveData<bool>, private Observer<bool>
 {
 private:
     vector<LiveData<bool>> mInputs;
-    LiveData<bool> mOutput;
-    Observer *mObserver;
 
     void updateInputs(vector<bool>);
 
@@ -22,7 +20,6 @@ protected:
     virtual void init(vector<bool>);
     virtual void operate() {}
 
-    void setObserver(Observer *);
     void setOutput(bool);
 
 public:

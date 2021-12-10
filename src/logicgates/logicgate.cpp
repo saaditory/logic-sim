@@ -6,7 +6,7 @@ void LogicGate::init(vector<bool> inputs)
     for (bool input : inputs)
     {
         mInputs.push_back(LiveData<bool>(input));
-        mInputs.back().observe(mObserver);
+        mInputs.back().observe(this);
     }
     operate();
 }
@@ -16,7 +16,6 @@ void LogicGate::updateInputs(vector<bool> inputs)
         mInputs.at(i).setValue(inputs.at(i));
 }
 
-void LogicGate::setObserver(Observer *observer) { mObserver = observer; }
 void LogicGate::onChanged(bool _) { operate(); }
 
 void LogicGate::setInputs(vector<bool> values)
@@ -25,7 +24,7 @@ void LogicGate::setInputs(vector<bool> values)
         ? init(values)
         : updateInputs(values);
 }
-void LogicGate::setOutput(bool value) { mOutput.setValue(value); }
+void LogicGate::setOutput(bool value) { setValue(value); }
 
 vector<bool> LogicGate::getInputs()
 {
@@ -35,4 +34,4 @@ vector<bool> LogicGate::getInputs()
 
     return inputs;
 }
-bool LogicGate::getOutput() { return mOutput.getValue(); }
+bool LogicGate::getOutput() { return getValue(); }

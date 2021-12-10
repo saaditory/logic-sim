@@ -10,9 +10,6 @@ private:
     NotGate notGate;
 
     void operate();
-
-public:
-    NandGate();
 };
 
 class NorGate : public LogicGate
@@ -22,9 +19,6 @@ private:
     NotGate notGate;
 
     void operate();
-
-public:
-    NorGate();
 };
 
 class Xor2Gate : public LogicGate
@@ -35,9 +29,6 @@ private:
     OrGate orGate;
 
     void operate();
-
-public:
-    Xor2Gate();
 };
 
 class XorGate : public LogicGate
@@ -47,9 +38,6 @@ private:
 
     void init(vector<bool>);
     void operate();
-
-public:
-    XorGate();
 };
 
 class XnorGate : public LogicGate
@@ -59,9 +47,6 @@ private:
     NotGate notGate;
 
     void operate();
-
-public:
-    XnorGate();
 };
 
 #endif
