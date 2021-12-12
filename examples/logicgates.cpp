@@ -20,6 +20,13 @@ void printTruthTable(LogicGate &gate, int inputsCount = 2)
 {
      int binaryComb = pow(2, inputsCount);
 
+     auto liveInputs = vector<LiveData<bool>>(inputsCount, new LiveData<bool>);
+
+     vector<LiveData<bool> *> liveInputsPtr;
+     for (auto &&liveInput : liveInputs)
+          liveInputsPtr.push_back(&liveInput);
+     gate.setInputs(liveInputsPtr);
+
      for (int i = 0; i < inputsCount; i++)
           cout << "IN" << i + 1 << "\t";
      cout << "OUT" << endl;
@@ -28,44 +35,28 @@ void printTruthTable(LogicGate &gate, int inputsCount = 2)
      {
           vector<bool> inputs = to_binary(inputsCount, i);
 
-          gate.setInputs(inputs);
+          for (int j = 0; j < inputsCount; j++)
+               liveInputs.at(j).setValue(inputs.at(j));
 
           for (int i = inputsCount - 1; i >= 0; i--)
                cout << " " << inputs.at(i) << "\t";
-          cout << " " << gate.getOutput() << endl;
+          cout << " " << gate.getOutput()->getValue() << endl;
      }
 }
 
 int main()
 {
-     AndGate andGate;
-     OrGate orGate;
-     NotGate notGate;
-     NandGate nandGate;
-     NorGate norGate;
-     XorGate xorGate;
-     XnorGate xnorGate;
+     string labels[] =
+         {"AND", "OR", "NOT", "NAND", "NOR", "XOR", "XNOR"};
+     LogicGate *gates[] = {new AndGate, new OrGate, new NotGate,
+                           new NandGate, new NorGate, new XorGate, new XnorGate};
 
-     cout << "AND Gate:" << endl;
-     printTruthTable(andGate);
-     cout << endl
-          << "OR Gate:" << endl;
-     printTruthTable(orGate);
-     cout << endl
-          << "NOT Gate:" << endl;
-     printTruthTable(notGate);
-     cout << endl
-          << "NAND Gate:" << endl;
-     printTruthTable(nandGate);
-     cout << endl
-          << "NOR Gate:" << endl;
-     printTruthTable(norGate);
-     cout << endl
-          << "XOR Gate:" << endl;
-     printTruthTable(xorGate);
-     cout << endl
-          << "XNOR Gate:" << endl;
-     printTruthTable(xnorGate);
+     for (int i = 0; i < 7; i++)
+     {
+          cout << labels[i] << " Gate:" << endl;
+          printTruthTable(*gates[i]);
+          cout << endl;
+     }
 
      return 0;
 }

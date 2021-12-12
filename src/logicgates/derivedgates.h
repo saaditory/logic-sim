@@ -9,6 +9,7 @@ private:
     AndGate andGate;
     NotGate notGate;
 
+    void init();
     void operate();
 };
 
@@ -18,16 +19,18 @@ private:
     OrGate orGate;
     NotGate notGate;
 
+    void init();
     void operate();
 };
 
 class Xor2Gate : public LogicGate
 {
 private:
-    NotGate notGate1, notGate2;
-    AndGate andGate1, andGate2;
+    NotGate notGateA, notGateB;
+    AndGate andGateA, andGateB;
     OrGate orGate;
 
+    void init();
     void operate();
 };
 
@@ -36,7 +39,7 @@ class XorGate : public LogicGate
 private:
     vector<Xor2Gate> xor2Gates;
 
-    void init(vector<bool>);
+    void init();
     void operate();
 };
 
@@ -46,6 +49,7 @@ private:
     XorGate xorGate;
     NotGate notGate;
 
+    void init();
     void operate();
 };
 

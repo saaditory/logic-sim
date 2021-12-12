@@ -7,26 +7,24 @@
 
 using namespace std;
 
-class LogicGate : private LiveData<bool>, private Observer<bool>
+class LogicGate : public LiveData<bool>, protected Observer<bool>
 {
 private:
-    vector<LiveData<bool>> mInputs;
-
-    void updateInputs(vector<bool>);
+    vector<LiveData<bool> *> mInputs;
 
 protected:
     void onChanged(bool);
 
-    virtual void init(vector<bool>);
+    virtual void init();
     virtual void operate() {}
 
     void setOutput(bool);
 
 public:
-    void setInputs(vector<bool>);
+    void setInputs(vector<LiveData<bool> *>);
 
-    vector<bool> getInputs();
-    bool getOutput();
+    vector<LiveData<bool> *> getInputs();
+    LiveData<bool> *getOutput();
 };
 
 #endif
