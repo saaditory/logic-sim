@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "../../lib/livedata-cpp/include/livedata/livedata.h"
+#include "livedata/livedata.h"
 
 using namespace std;
 
