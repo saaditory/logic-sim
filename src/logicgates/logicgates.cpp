@@ -2,18 +2,18 @@
 
 void AndGate::operate()
 {
-    bool output = true;
+    bool state = true;
     for (auto &&input : getInputs())
-        output &= input->getValue();
-    setOutput(output);
+        state &= input->getValue();
+    setOutput(state);
 }
 
 void OrGate::operate()
 {
-    bool output = false;
+    bool state = false;
     for (auto &&input : getInputs())
-        output |= input->getValue();
-    setOutput(output);
+        state |= input->getValue();
+    setOutput(state);
 }
 
 void NotGate::operate()
@@ -23,32 +23,32 @@ void NotGate::operate()
 
 void NandGate::operate()
 {
-    bool output = true;
+    bool state = true;
     for (auto &&input : getInputs())
-        output &= input->getValue();
-    setOutput(!output);
+        state &= input->getValue();
+    setOutput(!state);
 }
 
 void NorGate::operate()
 {
-    bool output = false;
+    bool state = false;
     for (auto &&input : getInputs())
-        output |= input->getValue();
-    setOutput(!output);
+        state |= input->getValue();
+    setOutput(!state);
 }
 
 void XorGate::operate()
 {
-    bool output = false;
+    bool state = false;
     for (auto &&input : getInputs())
-        output ^= input->getValue();
-    setOutput(output);
+        state ^= input->getValue();
+    setOutput(state);
 }
 
 void XnorGate::operate()
 {
-    bool output = false;
+    bool state = false;
     for (auto &&input : getInputs())
-        output ^= input->getValue();
-    setOutput(!output);
+        state ^= input->getValue();
+    setOutput(!state);
 }
