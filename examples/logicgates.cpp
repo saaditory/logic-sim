@@ -1,5 +1,6 @@
 #include <iostream>
-#include <bits/stdc++.h>
+#include <math.h>
+#include <chrono>
 
 #include "../src/logicgates/logicgates.h"
 
@@ -29,18 +30,27 @@ void printTruthTable(LogicGate &gate, int inputsCount = 2)
 
      for (int i = 0; i < inputsCount; i++)
           cout << "IN" << i + 1 << "\t";
-     cout << "OUT" << endl;
+     cout << "OUT\t";
+
+     cout << "EXECUTION TIME" << endl;
 
      for (int i = 0; i < binaryComb; i++)
      {
           vector<bool> inputs = to_binary(inputsCount, i);
 
+          auto start = chrono::high_resolution_clock::now();
+
           for (int j = 0; j < inputsCount; j++)
                liveInputs.at(j).setValue(inputs.at(j));
 
+          auto stop = chrono::high_resolution_clock::now();
+
           for (int i = inputsCount - 1; i >= 0; i--)
                cout << " " << inputs.at(i) << "\t";
-          cout << " " << gate.getOutput()->getValue() << endl;
+          cout << " " << gate.getOutput()->getValue() << "\t";
+
+          auto duration = chrono::duration_cast<chrono::nanoseconds>(stop - start);
+          cout << duration.count() << " ns" << endl;
      }
 }
 
