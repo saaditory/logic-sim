@@ -10,13 +10,13 @@ using namespace std;
 class LogicGate : public LiveData<bool>, protected Observer<bool>
 {
 private:
-    vector<LiveData<bool> *> mInputs;
+    vector<LiveData<bool> *> mInputs = vector<LiveData<bool> *>();
 
 protected:
     void onChanged(bool);
 
     virtual void init();
-    virtual void operate() {}
+    virtual void operate() = 0;
 
     void setOutput(bool);
 

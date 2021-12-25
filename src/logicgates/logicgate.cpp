@@ -10,8 +10,8 @@ void LogicGate::onChanged(bool _) { operate(); }
 
 void LogicGate::setInputs(vector<LiveData<bool> *> inputs)
 {
-    mInputs.clear();
-    mInputs = inputs;
+    for (auto &&input : inputs)
+        mInputs.push_back(input);
 
     init();
     operate();
