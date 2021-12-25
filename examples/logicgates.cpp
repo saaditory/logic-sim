@@ -2,7 +2,7 @@
 #include <math.h>
 #include <chrono>
 
-#include "../src/logicgates/logicgates.h"
+#include "../src/logicgates/logicgates.hpp"
 
 using namespace std;
 

@@ -1,9 +1,9 @@
-#ifndef LOGICGATE_H
-#define LOGICGATE_H
+#ifndef LOGICGATE_HPP
+#define LOGICGATE_HPP
 
 #include <vector>
 
-#include "livedata/livedata.h"
+#include "livedata/livedata.hpp"
 
 using namespace std;
 

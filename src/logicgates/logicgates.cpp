@@ -1,4 +1,4 @@
-#include "logicgates.h"
+#include "logicgates.hpp"
 
 void AndGate::operate()
 {

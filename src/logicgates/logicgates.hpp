@@ -1,7 +1,7 @@
-#ifndef LOGICGATES_H
-#define LOGICGATES_H
+#ifndef LOGICGATES_HPP
+#define LOGICGATES_HPP
 
-#include "logicgate.h"
+#include "logicgate.hpp"
 
 class AndGate : public LogicGate
 {

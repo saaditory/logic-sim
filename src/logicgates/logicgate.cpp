@@ -1,4 +1,4 @@
-#include "logicgate.h"
+#include "logicgate.hpp"
 
 void LogicGate::init()
 {
