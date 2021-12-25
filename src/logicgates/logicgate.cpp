@@ -16,7 +16,7 @@ void LogicGate::setInputs(vector<LiveData<bool> *> inputs)
     init();
     operate();
 }
-void LogicGate::setOutput(bool value) { setValue(value); }
+void LogicGate::setOutput(bool state) { setValue(state); }
 
 vector<LiveData<bool> *> LogicGate::getInputs() { return mInputs; }
 LiveData<bool> *LogicGate::getOutput() { return this; }
