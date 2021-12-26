@@ -21,12 +21,11 @@ void printTruthTable(LogicGate &gate, int inputsCount = 2)
 {
      int binaryComb = pow(2, inputsCount);
 
-     auto liveInputs = vector<LiveData<bool>>(inputsCount, new LiveData<bool>);
-
-     vector<LiveData<bool> *> liveInputsPtr;
+     auto liveInputs = vector<LiveData<bool> *>(inputsCount);
      for (auto &&liveInput : liveInputs)
-          liveInputsPtr.push_back(&liveInput);
-     gate.setInputs(liveInputsPtr);
+          liveInput = new LiveData<bool>;
+
+     gate.setInputs(liveInputs);
 
      for (int i = 0; i < inputsCount; i++)
           cout << "IN" << i + 1 << "\t";
@@ -41,7 +40,7 @@ void printTruthTable(LogicGate &gate, int inputsCount = 2)
           auto start = chrono::high_resolution_clock::now();
 
           for (int j = 0; j < inputsCount; j++)
-               liveInputs.at(j).setValue(inputs.at(j));
+               liveInputs.at(j)->setValue(inputs.at(j));
 
           auto stop = chrono::high_resolution_clock::now();
 
