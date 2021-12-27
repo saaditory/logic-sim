@@ -27,7 +27,7 @@ void printTruthTable(LogicGate &gate, int inputsCount = 2)
 
      gate.setInputs(liveInputs);
 
-     for (int i = 0; i < inputsCount; i++)
+     for (int i = inputsCount - 1; i >= 0; i--)
           cout << "IN" << i + 1 << "\t";
      cout << "OUT\t";
 
