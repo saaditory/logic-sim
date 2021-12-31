@@ -1,3 +1,6 @@
 [submodule "lib/livedata-cpp"]
 	path = lib/livedata-cpp
 	url = https://github.com/saaditory/livedata-cpp
+[submodule "lib/json"]
+	path = lib/json
+	url = https://github.com/nlohmann/json.git

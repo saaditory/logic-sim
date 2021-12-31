@@ -21,9 +21,9 @@ void printTruthTable(LogicGate &gate, int inputsCount = 2)
 {
      int binaryComb = pow(2, inputsCount);
 
-     auto liveInputs = vector<LiveData<bool> *>(inputsCount);
+     auto liveInputs = vector<LogicState *>(inputsCount);
      for (auto &&liveInput : liveInputs)
-          liveInput = new LiveData<bool>;
+          liveInput = new LogicState;
 
      gate.setInputs(liveInputs);
 

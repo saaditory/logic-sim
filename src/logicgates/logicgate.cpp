@@ -8,15 +8,17 @@ void LogicGate::init()
 
 void LogicGate::onChanged(bool _) { operate(); }
 
-void LogicGate::setInputs(vector<LiveData<bool> *> inputs)
+void LogicGate::setInputs(std::vector<LogicState *> inputs)
 {
     for (auto &&input : inputs)
         mInputs.push_back(input);
 
     init();
     operate();
+
+    JsonGate::setInputs(inputs);
 }
 void LogicGate::setOutput(bool state) { setValue(state); }
 
-vector<LiveData<bool> *> LogicGate::getInputs() { return mInputs; }
-LiveData<bool> *LogicGate::getOutput() { return this; }
+std::vector<LogicState *> LogicGate::getInputs() { return mInputs; }
+LogicState *LogicGate::getOutput() { return this; }

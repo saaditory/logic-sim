@@ -2,15 +2,22 @@
 #define LOGICGATE_HPP
 
 #include <vector>
+#include <map>
 
 #include "../../lib/livedata-cpp/include/livedata/livedata.hpp"
+#include "../json/jsoninput.hpp"
 
-using namespace std;
+class LogicState : public LiveData<bool>, public JsonGate
+{
+public:
+    LogicState() {}
+    LogicState(std::string name) { setName(name); }
+};
 
-class LogicGate : public LiveData<bool>, protected Observer<bool>
+class LogicGate : public LogicState, protected Observer<bool>
 {
 private:
-    vector<LiveData<bool> *> mInputs = vector<LiveData<bool> *>();
+    std::vector<LogicState *> mInputs = std::vector<LogicState *>();
 
 protected:
     void onChanged(bool);
@@ -21,10 +28,10 @@ protected:
     void setOutput(bool);
 
 public:
-    void setInputs(vector<LiveData<bool> *>);
+    void setInputs(std::vector<LogicState *>);
 
-    vector<LiveData<bool> *> getInputs();
-    LiveData<bool> *getOutput();
+    std::vector<LogicState *> getInputs();
+    LogicState *getOutput();
 };
 
 #endif
